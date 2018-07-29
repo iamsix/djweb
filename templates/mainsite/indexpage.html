@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block mainpanel %}
+<div id="leftcontentarea">
+{{ page_body|safe }}
+{{ user }}
+
+
+<h3> Recent Developmet Blog Posts: </h3>
+{% for post in recent_blogs %}
+{{post.title}}<br> 
+<blockquote>   {{post.blurb}}</blockquote>
+{% endfor %}
+
+</div>
+{% endblock %}
+

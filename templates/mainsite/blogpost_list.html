@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block mainpanel %}
+<div id="leftcontentarea"><ul>
+	{% for blog in blog_list %} 
+	<li> {{ blog.title }} {% url 'mainsite:blog' blog.slug %} 
+	{{ blog.blurb }}</li>
+	{% endfor %}
+
+
+	</ul></div>
+{% endblock %}

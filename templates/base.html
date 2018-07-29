@@ -9,12 +9,13 @@
 	<body>
 		<div id="topbar">
 			<span id="logo">Useful|idiom</span>
-			<span id="top-menu"><ul>menu_items
+			<span id="top-menu">menu_items
 				{% for menuitem in menu_items %}
-					<li class="menu-item">{{ menuitem }}</li> 
+					<span class="menu-item">{{ menuitem }}</span> 
 				{% endfor %}
-			</ul></span>
+			</span>
 		</div>
+		<div id="columnlayout">
 		{# block mainbody #}
 		{% block mainpanel %}example content{% endblock %}
 		{% block rightbar %}
@@ -24,6 +25,7 @@
 			<li>etc</li>
 		</ul></div>
 		{% endblock %}
+		</div>
 		<div id="footer">
                     Useful Idiom. Other footer stuff.
 		</div>

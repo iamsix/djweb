@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block titletag %}{{ site_title }}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{% static "mainsite/main.css" %}">
+	</head>
+	<body>
+		<div id="topbar">
+			<span id="logo">Useful|idiom</span>
+			<span id="top-menu"><ul>menu_items
+				{% for menuitem in menu_items %}
+					<li class="menu-item">{{ menuitem }}</li> 
+				{% endfor %}
+			</ul></span>
+		</div>
+		{# block mainbody #}
+		{% block mainpanel %}example content{% endblock %}
+		{% block rightbar %}
+		<div id="right-bar"><ul>
+			<li>Home</li>
+			<li>Blog</li>
+			<li>etc</li>
+		</ul></div>
+		{% endblock %}
+		<div id="footer">
+                    Useful Idiom. Other footer stuff.
+		</div>
+	
+	</body>
+</html>

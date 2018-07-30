@@ -8,11 +8,11 @@
 	</head>
 	<body>
 		<div id="topbar">
-			<span id="logo">Useful|idiom</span>
-			<span id="top-menu">menu_items
-				{% for menuitem in menu_items %}
-					<span class="menu-item">{{ menuitem }}</span> 
-				{% endfor %}
+			<a href="/"><span id="logo">Useful|idiom</span></a>
+			<span id="top-menu">
+				<span class="menu-item"><a href="{% url 'mainsite:bloglist' %}">Blog</a></span> 
+				<span class="menu-item"><a href="{% url 'mainsite:index' %}">Projects</a></span> 
+				<span class="menu-item"><a href="{% url 'mainsite:index' %}">About</a></span> 
 			</span>
 		</div>
 		<div id="columnlayout">
@@ -23,6 +23,7 @@
 			<li>Home</li>
 			<li>Blog</li>
 			<li>etc</li>
+			Might remove this sidebar.
 		</ul></div>
 		{% endblock %}
 		</div>

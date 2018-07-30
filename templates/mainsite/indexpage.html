@@ -6,9 +6,14 @@
 {{ user }}
 
 
+<h3> Projects: </h3>
+{% for proj in projects %}
+<a href='{% url 'mainsite:project' proj.slug %}'>{{ proj.name }}</a> - {{ proj.short_description }}
+{% endfor %}
+
 <h3> Recent Developmet Blog Posts: </h3>
 {% for post in recent_blogs %}
-{{post.title}}<br> 
+<a href='{% url 'mainsite:blog' post.slug %}'>{{post.title}}</a><br> 
 <blockquote>   {{post.blurb}}</blockquote>
 {% endfor %}
 

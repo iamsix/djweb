@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class SiteSettings(models.Model):
     site_title=models.CharField(max_length=255)
@@ -24,13 +25,15 @@ class SitePage(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
+    # tags marked hidden will not show up on unauthenticated user-facing  website interface
+    # hidden = models.BooleanField()
     def __str__(self):
         return self.name
 
         
 class BlogPost(models.Model):
     post_date=models.DateTimeField()
-    slug=models.SlugField()
+    slug=models.SlugField(unique=True)
     title=models.CharField(max_length=255)
     blurb=models.CharField(max_length=255, blank=True)
     author=models.CharField(max_length=100)
@@ -38,12 +41,14 @@ class BlogPost(models.Model):
     is_published=models.BooleanField()
     tags=models.ManyToManyField(Tag)
     # modifield fields ?
+    def get_absolute_url(self):
+        return reverse('mainsite:blog', args=[self.slug])
 
 class Project(models.Model):
-    slug=models.SlugField()
+    slug=models.SlugField(unique=True)
     name=models.CharField(max_length=100)
     short_description=models.CharField(max_length=255, blank=True)
     description=models.TextField()
     source_url=models.URLField(blank=True)
-    langauge=models.ManyToManyField(Tag, blank=True)
+    language=models.ManyToManyField(Tag, blank=True)
     # project_logo ?

@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
 {% block mainpanel %}
-<div id="leftcontentarea"><ul>
+<div id="leftcontentarea">
+	<div> {% if user.is_authenticated %} <a href='{% url 'mainsite:blogpost' %}'>New post</a>{% endif %}</div>
+	<ul>
 	{% for blog in blog_list %} 
-	<li> {{ blog.title }} {% url 'mainsite:blog' blog.slug %} 
+	<li>[{{ blog.post_date|date }}] <a href='{% url 'mainsite:blog' blog.slug %}'>{{ blog.title }}</a>
+		{% if not blog.is_published %} [DRAFT] {% endif %}
+		<br> 
 	{{ blog.blurb }}</li>
 	{% endfor %}
 

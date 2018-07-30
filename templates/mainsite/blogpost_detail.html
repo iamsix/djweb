@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block mainpanel %}
+<div id='leftcontentarea'>
+	TODO: This template needs changes and CSS
+	{% if user.is_authenticated %}<a href='{% url 'mainsite:blogedit' post.slug %}'>edit</a>{% endif %}
+	{% if not post.is_published %}<div id='drafnotice'> THIS IS A DRAFT POST THAT IS NOT PUBLISHED </div>{% endif %}
+	<h1>{{ post.title }}</h1>
+
+	By {{ post.author }} on {{ post.post_date|date }}</br>
+	{{ post.tags.all|join:" - " }}
+
+
+	<p>{{ post.body|safe }}<p>
+</div>
+
+{% endblock %}

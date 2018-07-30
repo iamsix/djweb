@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block mainpanel %}
+<div id="leftcontentarea">
+	TODO: This template needs a bunch of work and CSS
+	<h1>{{ project.name }}</h1>
+	{{ project.short_description }}
+        <br>
+	Tags:{{ project.language.all }}<br>
+        Source: {{ project.source_url }}<br>
+
+	<p>{{ project.description }}</p>
+
+	Blog posts about {{ project.name }}
+
+</div>
+
+{% endblock %}

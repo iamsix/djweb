@@ -6,8 +6,8 @@
 	{% if not post.is_published %}<div id='drafnotice'> THIS IS A DRAFT POST THAT IS NOT PUBLISHED </div>{% endif %}
 	<h1>{{ post.title }}</h1>
 
-	By {{ post.author }} on {{ post.post_date|date }}</br>
-	{{ post.tags.all|join:" - " }}
+	<span id='byline'>By <span id='blogauthor'>{{ post.author }}</span> on {{ post.post_date|date }}</br></span>
+	{# post.tags.all|join:" - " #}
 
 
 	<p>{{ post.body|safe }}<p>

@@ -1,18 +1,14 @@
 from django.db import models
 from django.urls import reverse
+from django.core.files.storage import FileSystemStorage
 
+# I may change how this works as it doesn't necessarily need to be an entire db entry
+# maybe change it to something like a wp_options model with 'setting name' and 'setting value'
+# another option is to just use settings.py 
 class SiteSettings(models.Model):
     site_title=models.CharField(max_length=255)
     site_slogan=models.CharField(max_length=255)
     
-
-# I may not use this menuitem thing.... it's going to be quite static I think
-# probably easier to just put it in the base html
-# was going to use for populating submenu of project item but not necessary when I can just use projecs directly
-class MenuItem(models.Model):
-    link_text=models.CharField(max_length=100)
-    link_to=models.TextField()
-    # subitem_of=models.ForiegnKey('self', on_delete=models.CASCADE, null=True) #or possibly OneToOne of another menuitem? I'm not sure if this is possible..
 
 class SitePage(models.Model):
     page_name=models.CharField(max_length=20)
@@ -24,11 +20,16 @@ class SitePage(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True, db_index=True)
     # tags marked hidden will not show up on unauthenticated user-facing  website interface
     # hidden = models.BooleanField()
     def __str__(self):
         return self.name
+
+
+class PostImage(models.Model):
+    name = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='images/')
 
         
 class BlogPost(models.Model):

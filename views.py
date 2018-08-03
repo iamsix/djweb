@@ -5,10 +5,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.utils import timezone
 from django.urls import reverse, reverse_lazy
+from django import forms
 
 from .models import SitePage
 from .models import BlogPost
 from .models import Project
+from .models import SiteSettings
+from .models import PostImage
+
 
 def sitepage(request, page='index'):
     data = get_object_or_404(SitePage, page_name=page)
@@ -56,21 +60,39 @@ class Blog(generic.DetailView):
         return context
 
 
+# this is a silly hack that shouldn't even be here
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = '__all__'
+        # render a manytomany as a textfield so that I can enter tags as a comma delimited list.
+        # requires custom form validation/saving due to that of course
+        # might need a custom widget to display the names instead of IDs...
+        # or just override the data itself to be a list
+#        widgets = {
+#                'tags': forms.CharField.widget
+#                }
+
 
 class PostBlog(LoginRequiredMixin, generic.CreateView):
     login_url = '/' #TODO this needs to be changed
+    form_class = BlogForm
     model = BlogPost
-    fields = '__all__'
 
 class EditBlog(LoginRequiredMixin, generic.UpdateView):
     login_url = '/' #TODO this needs to be changed
     model = BlogPost
-    fields = '__all__'
+    form_class = BlogForm
 
 class ProjectPage(generic.DetailView):
     model = Project
     context_object_name = "project"
 
 
+class UpImage(LoginRequiredMixin, generic.CreateView):
+    login_url = "/"
+    model = PostImage
+    fields = '__all__'
+    success_url='/media/{photo}'
 
-#TODO A json ajax interface for tag autocompletes
+

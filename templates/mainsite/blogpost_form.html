@@ -2,12 +2,11 @@
 {% block mainpanel %}
 <div id='leftcontentarea'>
 	TODO: This template needs to manually build the form, CSS, and probably some js<br>
-        {{ form.title }}
-	{{ form.errors }}
 	<form method=post>
 	{% csrf_token %}
-	{{ form.as_p }}
-
+	<table>
+	{{ form.as_table }}
+        </table>
         <input type='submit'>
 
 	</form>

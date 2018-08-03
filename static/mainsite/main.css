@@ -51,13 +51,6 @@ h1 {
     flex: 1;
 }
 
-#right-bar {
-    background-color: #eee;
-    padding: 10px 15px;
-    width: 20%;
-    height: auto;
-    float: right;
-}
 
 #columnlayout {
     height: 90%;
@@ -98,4 +91,8 @@ h1 {
 
 #blogauthor {
     font-weight: bold;
+}
+
+#projectmenu-popup {
+    display: none;
 }

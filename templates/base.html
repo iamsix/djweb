@@ -11,20 +11,20 @@
 			<span id="logo"><a href='/'>Useful|idiom</a></span>
 			<span id="top-menu">
 				<span class="menu-item"><a href="{% url 'mainsite:bloglist' %}">Blog</a></span> 
-				<span class="menu-item"><a href="#">Projects</a></span> 
-				<span class="menu-item"><a href="{% url 'mainsite:index' %}">About</a></span> 
+				<span class="menu-item"><a href="#">Projects</a></span><span class='caret'><span> 
+				<span class="menu-item"><a href="{% url 'mainsite:index' %}">About</a></span>
+				<ul id='projectmenu-popup'>
+				{% for prjn, prjl in project_links.items %}
+				<li><a href="{{ prjl }}">{{ prjn }}</a></li>
+				{% endfor %}
+				</ul>
 			</span>
 		</div>
 		<div id="columnlayout">
 		{# block mainbody #}
+		
 		{% block mainpanel %}example content{% endblock %}
 		{% block rightbar %}
-		<div id="right-bar"><ul>
-			<li>Home</li>
-			<li>Blog</li>
-			<li>etc</li>
-			Might remove this sidebar.
-		</ul></div>
 		{% endblock %}
 		</div>
 		<div id="footer">
